@@ -14,7 +14,8 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: '//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons'}
     ]
   },
 
@@ -27,12 +28,15 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    { src: 'vue-material/dist/vue-material.min.css', lang:'css' },
+    { src: '~/assets/theme.scss', lang:'scss' }
   ],
 
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~/plugins/vue-material' }
   ],
 
   /*
@@ -66,6 +70,13 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+    }
+  },
+
+  proxy: {
+    "/api/": {
+        target: "https://gorillalogic.com/wsp-json/wp/v2/",
+        pathRewrite: {"^/api/": ""}
     }
   }
 }
